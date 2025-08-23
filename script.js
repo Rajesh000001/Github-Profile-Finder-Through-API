@@ -33,9 +33,9 @@ person.then( (response) => {
     console.log(data);
     photo.style.backgroundColor = `none`;
     photo.style.backgroundImage = `url(${data.avatar_url})`;
-    nameEl.innerText = `name: ${data.name}`;
-    followersEl.innerText = `followers: ${data.followers}`;
-    followingEl.innerText = `following: ${data.following}`;
+    nameEl.innerText = `name: ${data.name ?? `data not available`}`;
+    followersEl.innerText = `followers: ${data.followers ?? `data not available`}`;
+    followingEl.innerText = `following: ${data.following ?? `data not available`}`;
     locationEl.innerText = `location: ${data.location ?? "data not available"}`;
 
 }).catch((err) => {
