@@ -90,6 +90,30 @@ body {
     color: #9B2915;
 }
 
+@media (max-width: 600px) {
+  body {
+    padding: 0.5rem;
+    flex-direction: column;
+  }
+
+  .card {
+    max-width: 100%;
+    min-height: auto;
+  }
+
+  #photo {
+    width: 90px;
+    height: 90px;
+  }
+
+  .description {
+    font-size: 0.9rem;
+  }
+
+  #subtitle {
+    font-size: 1rem;
+  }
+}
 
 
 
