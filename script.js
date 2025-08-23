@@ -24,6 +24,12 @@ nameEl.innerText = `name: `;
 followersEl.innerText = `followers: `;
 followingEl.innerText = `following: `;
 locationEl.innerText = `location: `;
+function safeString(value) {
+  if (value === null || value === undefined || value === "") {
+    return "data not available";
+  }
+  return value;
+}
 
 function search(username) {
     const person = fetch(`https://api.github.com/users/${username}`);
@@ -33,10 +39,10 @@ person.then( (response) => {
     console.log(data);
     photo.style.backgroundColor = `none`;
     photo.style.backgroundImage = `url(${data.avatar_url})`;
-    nameEl.innerText = `name: ${data.name ?? `data not available`}`;
+    nameEl.innerText = `name: ${safeString(data.name)}`;
     followersEl.innerText = `followers: ${data.followers ?? `data not available`}`;
     followingEl.innerText = `following: ${data.following ?? `data not available`}`;
-    locationEl.innerText = `location: ${data.location ?? "data not available"}`;
+    locationEl.innerText = `location: ${safeString(data.location)}`;
 
 }).catch((err) => {
     console.log(err);
