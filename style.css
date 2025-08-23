@@ -7,7 +7,7 @@
 body {
     height: 100vh;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -21,6 +21,9 @@ body {
     overflow: hidden;
     border-radius: 5px;
 }
+#user-input{
+    width: 90%;
+}
 
 
 #search-icon-button{
@@ -28,6 +31,13 @@ body {
     font-size: 18px;
     cursor: pointer;
     border: none;
+    padding: 0 8px;
+}
+
+#mic {
+    height: 3vh;
+    font-size: 18px;
+    cursor: pointer;
     padding: 0 8px;
 }
 
@@ -74,7 +84,11 @@ body {
     color: white;
 }
 
-
+#subtitle{
+    height:20vh;
+    aspect-ratio: 1.618;
+    color: #9B2915;
+}
 
 
 
