@@ -10,20 +10,17 @@ const searchButton = document.querySelector("#search-icon-button");
 searchButton.addEventListener("click", ()=> {
     console.log("button clicked");
     let username = userInput.value;
+    nameEl.innerText = `Loading...`;
     search(username);
 })
 document.addEventListener("keydown", (e) => {
     if(e.key === `Enter`){
-    console.log("button clicked");
     let username = userInput.value;
+    nameEl.innerText = `Loading...`;
     search(username);
     }
 })
-photo.style.backgroundColor = `white` ;
-nameEl.innerText = `name: `;
-followersEl.innerText = `followers: `;
-followingEl.innerText = `following: `;
-locationEl.innerText = `location: `;
+photo.style.backgroundColor = 'transparent';
 function safeString(value) {
   if (value === null || value === undefined || value === "") {
     return "data not available";
@@ -31,20 +28,35 @@ function safeString(value) {
   return value;
 }
 
-function search(username) {
-    const person = fetch(`https://api.github.com/users/${username}`);
-person.then( (response) => {
-    return response.json();
-}).then( (data) => {
-    console.log(data);
-    photo.style.backgroundColor = `none`;
+async function search(username) {
+    try {
+    if (!username.trim()) {
+        alert("Please enter a username");
+        nameEl.innerText = ``;
+        return;
+    }
+    const response = await fetch(`https://api.github.com/users/${username}`);
+    if (!response.ok) throw new Error("User not found");
+    const data = await response.json();
+    photo.style.backgroundColor = `transparent`;
     photo.style.backgroundImage = `url(${data.avatar_url})`;
     nameEl.innerText = `name: ${safeString(data.name)}`;
     followersEl.innerText = `followers: ${data.followers ?? `data not available`}`;
     followingEl.innerText = `following: ${data.following ?? `data not available`}`;
     locationEl.innerText = `location: ${safeString(data.location)}`;
-
-}).catch((err) => {
-    console.log(err);
-})
+    } catch(err){
+      if (err.name === "TypeError") {
+      // usually network error
+      nameEl.innerText = "Network error (check internet connection)";
+    } else {
+      // API or other error
+      nameEl.innerText = err.message;
+    }
+    photo.style.backgroundColor = `none`;
+    photo.style.backgroundImage = `none`
+    followersEl.innerText = ``
+    followingEl.innerText = ``;
+    locationEl.innerText = ``;
+    }
+    
 }

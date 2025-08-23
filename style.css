@@ -11,7 +11,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background-color: #83BCA9;
+    background-color: #BAD7F2;
 }
 
 .search-bar{
@@ -27,6 +27,8 @@ body {
     height: 3vh;
     font-size: 18px;
     cursor: pointer;
+    border: none;
+    padding: 0 8px;
 }
 
 .card{
@@ -55,6 +57,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
 
 #details{
     height:100%;
