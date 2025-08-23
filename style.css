@@ -7,9 +7,25 @@
 body {
     height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+    gap: 10px;
+}
+
+.search-bar{
+    height: 3vh;
+    display: flex;
+    border: 2px solid black;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+
+#search-icon-button{
+    height: 3vh;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 .card{

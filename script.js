@@ -3,21 +3,42 @@ const details = document.querySelector("#details");
 const nameEl = document.querySelector("#name");
 const followersEl = document.querySelector("#followers");
 const followingEl = document.querySelector("#following");
-const bioEl = document.querySelector("#bio");
 const locationEl = document.querySelector("#location");
+const userInput = document.querySelector("#user-input");
 
+const searchButton = document.querySelector("#search-icon-button");
+searchButton.addEventListener("click", ()=> {
+    console.log("button clicked");
+    let username = userInput.value;
+    search(username);
+})
+document.addEventListener("keydown", (e) => {
+    if(e.key === `Enter`){
+    console.log("button clicked");
+    let username = userInput.value;
+    search(username);
+    }
+})
+photo.style.backgroundColor = `white` ;
+nameEl.innerText = `name: `;
+followersEl.innerText = `followers: `;
+followingEl.innerText = `following: `;
+locationEl.innerText = `location: `;
 
-const person = fetch('https://api.github.com/users/hiteshchoudhary');
+function search(username) {
+    const person = fetch(`https://api.github.com/users/${username}`);
 person.then( (response) => {
     return response.json();
 }).then( (data) => {
     console.log(data);
+    photo.style.backgroundColor = `none`;
     photo.style.backgroundImage = `url(${data.avatar_url})`;
     nameEl.innerText = `name: ${data.name}`;
     followersEl.innerText = `followers: ${data.followers}`;
     followingEl.innerText = `following: ${data.following}`;
-    locationEl.innerText = `location: ${data.location}`;
+    locationEl.innerText = `location: ${data.location ?? "data not available"}`;
 
 }).catch((err) => {
     console.log(err);
 })
+}
