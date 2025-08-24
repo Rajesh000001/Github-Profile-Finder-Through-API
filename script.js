@@ -7,6 +7,7 @@ const locationEl = document.querySelector("#location");
 const userInput = document.querySelector("#user-input");
 const mic = document.querySelector("#mic");
 const micAudio = new Audio("micAudio.mp3");
+const subtitle = document.querySelector("#subtitle");
 
 speechSynthesis.cancel();
 let text1;
@@ -26,6 +27,8 @@ recognition.interimResults = false;
 
 mic.addEventListener( "click", () => {
     speechSynthesis.cancel();
+    subtitle.innerText = ``;
+    mic.style.backgroundColor =`#FF66B3`
     recognition.start();
     micAudio.play();
     micAudio.volume = 1.0;
@@ -46,6 +49,7 @@ recognition.onresult = (e) => {
 
 recognition.onend = (e) =>{
   micAudio.pause();
+  mic.style.backgroundColor =``
   nameEl.innerText = ``;
   let username = userInput.value;
   micUsed = true;
@@ -58,6 +62,7 @@ recognition.onerror = (e) => {
 const searchButton = document.querySelector("#search-icon-button");
 searchButton.addEventListener("click", ()=> {
     console.log("button clicked");
+    subtitle.innerText = ``;
     let username = userInput.value;
     nameEl.innerText = `Loading...`;
     search(username);
@@ -129,7 +134,6 @@ function speakText(text) {
   utterance.pitch = 1;
   utterance.rate = 1.0;
   speechSynthesis.speak(utterance)
-  const subtitle = document.querySelector("#subtitle");
 
   utterance.onboundary = (e) => {
     if(e.name === `word`) {
