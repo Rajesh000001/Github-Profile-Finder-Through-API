@@ -7,12 +7,12 @@
 html, body {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;   /* stop horizontal cutoff */
   background-color: #BAD7F2;
   font-family: sans-serif;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   padding: 1rem;
 }
@@ -91,12 +91,14 @@ html, body {
     height:20vh;
     aspect-ratio: 1.618;
     color: #9B2915;
+    background-color: #292F36;
 }
 
 @media (max-width: 600px) {
   body {
     padding: 0.5rem;
     flex-direction: column;
+    overflow-x: hidden;
   }
 
   .card {
