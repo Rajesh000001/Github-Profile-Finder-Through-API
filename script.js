@@ -8,7 +8,8 @@ const userInput = document.querySelector("#user-input");
 const mic = document.querySelector("#mic");
 const micAudio = new Audio("micAudio.mp3");
 const subtitle = document.querySelector("#subtitle");
-
+const viewProfile = document.querySelector("#view-profile-link");
+viewProfile.style.display = `none`;
 speechSynthesis.cancel();
 let text1;
 let text2;
@@ -95,6 +96,8 @@ async function search(username) {
     const data = await response.json();
     photo.style.backgroundColor = `transparent`;
     photo.style.backgroundImage = `url(${data.avatar_url})`;
+    viewProfile.style.display = `block`;
+    viewProfile.setAttribute("href", `https://github.com/${username}`);
     nameEl.innerText = `name: ${safeString(data.name)}`;
     followersEl.innerText = `followers: ${data.followers ?? `data not available`}`;
     followingEl.innerText = `following: ${data.following ?? `data not available`}`;

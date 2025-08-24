@@ -56,9 +56,12 @@ html, body {
 }
 
 .photo-section{
-    height: 33%;
+    height: 35%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 #photo{
@@ -69,8 +72,14 @@ html, body {
     border-radius: 50%;
 }
 
+#view-profile-link{
+  cursor: pointer;
+  display: none;
+  color: #42BFDD;
+}
+
 .details-section{
-    height:67%;
+    height:65%;
     display: flex;
     justify-content: center;
 }
