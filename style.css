@@ -91,7 +91,6 @@ html, body {
     height:20vh;
     aspect-ratio: 1.618;
     color: #9B2915;
-    background-color: #292F36;
 }
 
 @media (max-width: 600px) {
