@@ -51,7 +51,7 @@ recognition.onend = (e) =>{
   micAudio.pause();
   mic.style.backgroundColor =``
   nameEl.innerText = ``;
-  let username = userInput.value;
+  let username = userInput.value.replace(/[^a-zA-Z0-9-]/g, "");
   micUsed = true;
   search(username);
 }
@@ -63,13 +63,13 @@ const searchButton = document.querySelector("#search-icon-button");
 searchButton.addEventListener("click", ()=> {
     console.log("button clicked");
     subtitle.innerText = ``;
-    let username = userInput.value;
+    let username = userInput.value.replace(/[^a-zA-Z0-9-]/g, "");
     nameEl.innerText = `Loading...`;
     search(username);
 })
 document.addEventListener("keydown", (e) => {
     if(e.key === `Enter`){
-    let username = userInput.value;
+    let username = userInput.value.replace(/[^a-zA-Z0-9-]/g, "");
     nameEl.innerText = `Loading...`;
     search(username);
     }
@@ -84,6 +84,7 @@ function safeString(value) {
 
 async function search(username) {
     try {
+      username = username.replace(/[^a-zA-Z0-9-]/g, "");
     if (!username.trim()) {
         alert("Please enter a username");
         nameEl.innerText = ``;
