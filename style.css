@@ -46,7 +46,7 @@ html, body {
 
 .card{
     height: 50vh;
-    aspect-ratio: 0.618;
+    width: 100%;
     background-color: #292F36;
     border-radius: 10px;
 }
